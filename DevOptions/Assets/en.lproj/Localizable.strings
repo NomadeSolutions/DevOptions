@@ -1,0 +1,45 @@
+/* 
+  Localizable.strings
+  DevOptions
+
+  Created by William-José Simard-Touzet on 2019-02-26.
+  Copyright © 2019 Nomade Solutions Mobiles. All rights reserved.
+*/
+
+// MARK: - General
+
+"DevOptions.general.not_availble" = "N/A";
+"DevOptions.general.ok" = "Ok";
+
+
+// MARK: - Endorsement
+
+"DevOptions.endorsement.alert.dev_options_title" = "Developer Options";
+"DevOptions.endorsement.alert.dev_options_message" = "Enter password to access this section.";
+"DevOptions.endorsement.alert.dev_options_password_placeholder" = "Password";
+"DevOptions.endorsement.licenses_title" = "Licenses";
+
+
+// MARK: - DevOptions
+
+"DevOptions.alert.app_needs_to_restart_title" = "Restart is needed";
+"DevOptions.alert.app_needs_to_restart_message_ACTIVATE" = "The application needs to be restarted in order to activate Developper Mode.\n Please reopen the application after this.";
+"DevOptions.alert.app_needs_to_restart_message_DEACTIVATE" = "The application needs to be restarted in order to deactivate Developper Mode.\n Please reopen the application after this.";
+"DevOptions.alert.app_needs_to_restart_action_close_now" = "Close Now";
+"DevOptions.alert.user_disconnected_title" = "User disconnected";
+"DevOptions.alert.user_disconnected_message" = "You have been disconnected.";
+
+// MARK: - DevOptionsViewController
+
+"DevOptions.view_controller.navigation_bar.title" = "Developer Options";
+"DevOptions.view_controller.toggle.title" = "Enable Developer Mode";
+"DevOptions.view_controller.item.userId_title" = "User ID";
+"DevOptions.view_controller.item.device_title" = "Device";
+"DevOptions.view_controller.item.os_title" = "OS version";
+"DevOptions.view_controller.item.app_version_title" = "App version";
+"DevOptions.view_controller.item.phone_language_title" = "Phone language";
+"DevOptions.view_controller.item.base_urls_title" = "Base URLs";
+
+// MARK: - Images
+
+"DevOptions.image.software_licenses" = "software_licenses";

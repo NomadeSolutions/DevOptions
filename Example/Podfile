@@ -1,0 +1,14 @@
+use_frameworks!
+
+target 'DevOptions_Example' do
+  pod 'TRZSlideLicenseViewController'
+  pod 'Toast-Swift'
+  pod 'SnapKit'
+  pod 'DevOptions', :path => '../'
+
+  target 'DevOptions_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

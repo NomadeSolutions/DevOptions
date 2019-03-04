@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  DevOptions
+
+  Created by William-José Simard-Touzet on 2019-02-28.
+  Copyright © 2019 Nomade Solutions Mobiles. All rights reserved.
+*/
+
+
+// MARK: - Welcome
+
+"welcome.navigation_bar.title" = "Bienvenue";
+"welcome.label.information" = "Voici un projet simple ayant pour but de démontrer les fonctionnalités de DevOptions. Vous pouvez accèder au mode développeur caché en maintenant les deux boutons 'Nomade Solutions Mobile' et 'Licences Logicielles' dans le bas de la page 'Réglages'.\n\n[Mot de passe : 1234]";
+"welcome.button.settings" = "Réglages";
+
+
+// MARK: - Settings
+
+"settings.navigation_bar.title" = "Réglages";
+"settings.button.user_login" = "Connecter";
+"settings.button.user_logout" = "Déconnecter";
+"settings.item.user" = "Utilisateur";
+"settings.item.need_to_reset" = "L'application doit redémarrer à l'activation/désactivation";

@@ -1,0 +1,46 @@
+/* 
+  Localizable.strings
+  DevOptions
+
+  Created by William-José Simard-Touzet on 2019-02-26.
+  Copyright © 2019 Nomade Solutions Mobiles. All rights reserved.
+*/
+
+// MARK: - General
+
+"DevOptions.general.not_availble" = "N/D";
+"DevOptions.general.ok" = "Ok";
+
+
+// MARK: - Endorsement
+
+"DevOptions.endorsement.alert.dev_options_title" = "Options Développeur";
+"DevOptions.endorsement.alert.dev_options_message" = "Inscriver le mot de passe pour accéder à cette section.";
+"DevOptions.endorsement.alert.dev_options_password_placeholder" = "Mot de passe";
+"DevOptions.endorsement.licenses_title" = "Licences";
+
+
+// MARK: - DevOptions
+"DevOptions.alert.app_needs_to_restart_title" = "Redémarrage nécessaire";
+"DevOptions.alert.app_needs_to_restart_message_ACTIVATE" = "L'application doit être redémarée afin d'activer le mode développeur.\nVeuillez ouvrir l'application de nouveau après sa fermeture.";
+"DevOptions.alert.app_needs_to_restart_message_DEACTIVATE" = "L'application doit être redémarée afin de désactiver le mode développeur.\nVeuillez ouvrir l'application de nouveau après sa fermeture.";
+"DevOptions.alert.app_needs_to_restart_action_close_now" = "Fermer maintenant";
+"DevOptions.alert.user_disconnected_title" = "Utilisateur déconnecté";
+"DevOptions.alert.user_disconnected_message" = "Vous avez été déconnecté.";
+
+
+// MARK: - DevOptionsViewController
+
+"DevOptions.view_controller.navigation_bar.title" = "Options développeur";
+"DevOptions.view_controller.toggle.title" = "Activer le Mode Développeur";
+"DevOptions.view_controller.item.userId_title" = "ID de l'utilisateur";
+"DevOptions.view_controller.item.device_title" = "Appareil";
+"DevOptions.view_controller.item.os_title" = "Version de l'OS";
+"DevOptions.view_controller.item.app_version_title" = "Version de l'app";
+"DevOptions.view_controller.item.phone_language_title" = "Langue de l'appareil";
+"DevOptions.view_controller.item.base_urls_title" = "URLs de base";
+
+
+// MARK: - Images
+
+"DevOptions.image.software_licenses" = "licences_logicielles";

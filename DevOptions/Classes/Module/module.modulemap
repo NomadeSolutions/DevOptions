@@ -1,0 +1,6 @@
+module DevOptionsObjc {
+    header "../AssistiveTouch/XFAssistiveTouch/XFAssistiveTouch.h"
+    header "../Language/NSBundle+Language.h"
+    header "../Language/UIViewController+LocalizedAtRunTimeViewController.h"
+    export *
+}

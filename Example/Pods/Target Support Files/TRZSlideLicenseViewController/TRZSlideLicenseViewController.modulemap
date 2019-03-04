@@ -1,0 +1,6 @@
+framework module TRZSlideLicenseViewController {
+  umbrella header "TRZSlideLicenseViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}
