@@ -1,6 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'DevOptions'
   s.version          = '0.1.0'
+  s.license          = { :type => 'MIT' }
   s.summary          = 'Allows you to activate developper options.'
   s.swift_version    = '4.2'
 
@@ -9,22 +10,19 @@ Allows you to activate developper options such as: Changing the application lang
                        DESC
 
   s.homepage         = 'https://github.com/NomadeSolutions/DevOptions'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Nomade Solutions Mobiles' => 'info@nomadesolutions.com' }
   s.source           = { :git => 'https://github.com/NomadeSolutions/DevOptions.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'DevOptions/Classes/**/*.{h,m,swift}'
+  s.source_files = 'DevOptions/Classes/**/*.{h,m,swift,modulemap}'
   s.pod_target_xcconfig = {'SWIFT_INCLUDE_PATHS' => '$(PODS_TARGET_SRCROOT)/DevOptions/Classes/Module'}
   
   s.resource_bundles = {
       'DevOptions' => ['DevOptions/Assets/**/*.{xcassets,strings}']
   }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit', 'SafariServices'
   s.dependency 'TRZSlideLicenseViewController'
   s.dependency 'Toast-Swift'
