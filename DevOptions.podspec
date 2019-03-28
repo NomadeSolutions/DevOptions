@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'DevOptions'
-  s.version          = '0.1.0'
-  s.license          = { :type => 'MIT' }
+  s.version          = '0.2.0'
+  s.license          = { :type => 'MIT', :file => "LICENSE"}
   s.summary          = 'Allows you to activate developper options.'
   s.swift_version    = '4.2'
 

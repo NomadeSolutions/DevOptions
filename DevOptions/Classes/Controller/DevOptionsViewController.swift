@@ -15,6 +15,7 @@ class DevOptionsViewController: UIViewController, DevOptionsToggleViewDelegate {
     fileprivate var scrollView: UIView!
     fileprivate var contentView: UIView!
     fileprivate var devModeToggleView: DevOptionsToggleView!
+    fileprivate var applicationTypeSegmentedControl: UISegmentedControl!
     fileprivate var userIdItem: DevOptionsItemView!
     fileprivate var deviceItem: DevOptionsItemView!
     fileprivate var osItem: DevOptionsItemView!
@@ -37,7 +38,7 @@ class DevOptionsViewController: UIViewController, DevOptionsToggleViewDelegate {
         scrollView.addSubview(contentView)
         
         devModeToggleView = DevOptionsToggleView()
-        devModeToggleView.title = NSLocalizedString("DevOptions.view_controller.toggle.title", bundle: DevOptions.ResourcesBundle(), comment: "")
+        devModeToggleView.title = NSLocalizedString("DevOptions.view_controller.toggle.dev_mode", bundle: DevOptions.ResourcesBundle(), comment: "")
         devModeToggleView.isOn = DevOptions.isDevModeActivated()
         devModeToggleView.delegate = self;
         contentView.addSubview(devModeToggleView)
@@ -73,6 +74,16 @@ class DevOptionsViewController: UIViewController, DevOptionsToggleViewDelegate {
         urlsItem = DevOptionsItemView(title: NSLocalizedString("DevOptions.view_controller.item.base_urls_title", bundle: DevOptions.ResourcesBundle(), comment: ""))
         urlsItem.content = formatedUrls
         self.view.addSubview(urlsItem)
+        
+        applicationTypeSegmentedControl = UISegmentedControl(items:
+            [NSLocalizedString("DevOptions.view_controller.segmented_control.dev",
+                               bundle: DevOptions.ResourcesBundle(), comment: ""),
+             NSLocalizedString("DevOptions.view_controller.segmented_control.prod",
+                               bundle: DevOptions.ResourcesBundle(), comment: "")])
+        applicationTypeSegmentedControl.isEnabled = DevOptions.isDevModeActivated()
+        applicationTypeSegmentedControl.selectedSegmentIndex = DevOptions.applicationType().rawValue
+        applicationTypeSegmentedControl.addTarget(self, action: #selector(onChangeApplicationType), for: .valueChanged)
+        self.view.addSubview(applicationTypeSegmentedControl)
         
         DevOptions.onBaseUrlsChangeBlock = {
             var formatedUrls = ""
@@ -136,6 +147,12 @@ class DevOptionsViewController: UIViewController, DevOptionsToggleViewDelegate {
             make.top.equalTo(phoneLanguageItem.snp.bottom)
             make.left.equalTo(contentView.snp.left).offset(offset)
             make.right.equalTo(contentView.snp.right).offset(-offset)
+        }
+        
+        applicationTypeSegmentedControl.snp.makeConstraints { (make) in
+            make.top.equalTo(urlsItem.snp.bottom).offset(offset)
+            make.left.equalTo(contentView.snp.left).offset(offset)
+            make.right.equalTo(contentView.snp.right).offset(-offset)
             make.bottom.equalTo(contentView.snp.bottom).offset(-offset)
         }
     }
@@ -145,6 +162,17 @@ class DevOptionsViewController: UIViewController, DevOptionsToggleViewDelegate {
     func optionToggleView(_ optionToggleView: DevOptionsToggleView, valueChangedFor value: Bool) {
         if optionToggleView == devModeToggleView {
             DevOptions.setDevModeActivated(value)
+            applicationTypeSegmentedControl.isEnabled = value
+        }
+    }
+    
+    // MARK: - User interaction
+    
+    @objc func onChangeApplicationType() {
+        if applicationTypeSegmentedControl.selectedSegmentIndex == 0 {
+            DevOptions.setApplicationType(.development)
+        } else {
+            DevOptions.setApplicationType(.production)
         }
     }
 

@@ -26,6 +26,11 @@ class DevOptionsToggleView: UIView {
             toggle.isOn = isOn
         }
     }
+    var isEnabled: Bool = true {
+        didSet {
+            toggle.isEnabled = isEnabled
+        }
+    }
     var delegate: DevOptionsToggleViewDelegate?
     
     

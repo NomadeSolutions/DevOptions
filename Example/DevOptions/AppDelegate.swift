@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         let configurations = DevOptionsConfigurations()
+        configurations.defaultApplicationType = .production
         configurations.companyLogo = UIImage(named: "logo_nomade")
         configurations.companyWebsite = "https://www.nomadesolutions.com/"
         configurations.password = "1234"

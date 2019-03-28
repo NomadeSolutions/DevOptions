@@ -65,6 +65,8 @@
         return;
     } else if ([self.view isKindOfClass:[UIWebView class]]) {
         return;
+    } else if([self.description containsString:@"PKRevealController"]) {
+        return;
     } else if ([self isKindOfClass:[UITabBarController class]]) {
         [self viewDidLoad];
         return;

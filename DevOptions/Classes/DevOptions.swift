@@ -9,7 +9,12 @@
 import UIKit
 import DevOptionsObjc
 
+@objc public enum ApplicationType: Int {
+    case development, production
+}
+
 @objc public class DevOptionsConfigurations: NSObject {
+    @objc public var defaultApplicationType: ApplicationType = .development
     @objc public var companyLogo: UIImage?
     @objc public var companyWebsite: String?
     @objc public var licensesFileName: String!
@@ -40,9 +45,10 @@ import DevOptionsObjc
     // MARK: - Private vars
     
     static private let kIsDevModeActivated = "kIsDevModeActivated"
+    static private let kApplicationType = "kApplicationType"
     
     internal static var onBaseUrlsChangeBlock: (()->Void)?
-    private static var onDevModeChangeBlock: (()->Void)?
+    private static var onApplicationTypeChangeBlock: (()->Void)?
     internal static var configurations: DevOptionsConfigurations!
     
     // MARK: - Public vars
@@ -63,15 +69,17 @@ import DevOptionsObjc
      Call this method in AppDelegate's didFinishLaunchingWithOptions to configure DevOptions. It will show the DevOptions icon if necessary.
      
      - parameter baseUrls: The current base URLs
-     - parameter onDevModeChange: The block to procede when the DevOptions becomes activated or deactivated (optional)
+     - parameter onServerChange: The block to procede when the application's environment switches (optional). Example: Development -> Production or Production -> Development.
      */
-    @objc public class func configure(_ configurations: DevOptionsConfigurations, baseUrls: [String], onDevModeChange: (()->Void)?) {
+    @objc public class func configure(_ configurations: DevOptionsConfigurations, baseUrls: [String], onServerChange: (()->Void)?) {
         self.configurations = configurations
         self.baseUrls = baseUrls
-        self.onDevModeChangeBlock = onDevModeChange
+        self.onApplicationTypeChangeBlock = onServerChange
         
         if DevOptions.isDevModeActivated() {
             AssistiveTouchCenter.sharedInstance.showAssistiveTouch(true)
+        } else {
+            setApplicationType(configurations.defaultApplicationType)
         }
     }
     
@@ -80,7 +88,6 @@ import DevOptionsObjc
         return UserDefaults.standard.bool(forKey: kIsDevModeActivated)
     }
     
-    
     /**
      To activate or deactivate DevOptions.
      You do not need to call this method unless necessary.
@@ -88,8 +95,19 @@ import DevOptionsObjc
     @objc public class func setDevModeActivated(_ isActivated: Bool) {
         UserDefaults.standard.set(isActivated, forKey: kIsDevModeActivated)
         AssistiveTouchCenter.sharedInstance.showAssistiveTouch(isActivated)
-        
-        onDevModeChangeBlock?()
+        setApplicationType(configurations.defaultApplicationType)
+    }
+    
+    @objc public class func applicationType() -> ApplicationType {
+        return ApplicationType(rawValue: UserDefaults.standard.integer(forKey: kApplicationType))!
+    }
+    
+    @objc class func setApplicationType(_ applicationType: ApplicationType) {
+        let currentApplicationType = DevOptions.applicationType()
+        UserDefaults.standard.set(applicationType.rawValue, forKey: kApplicationType)
+        if currentApplicationType != applicationType {
+            onApplicationTypeChangeBlock?()
+        }
     }
     
     

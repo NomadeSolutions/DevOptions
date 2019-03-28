@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "08EA1FF94ADCC05F6275E2ED2C6B454C"
+               BlueprintIdentifier = "5421EBACA90BC00F0BD11C5591009CBE"
                BlueprintName = "TRZSlideLicenseViewController"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "TRZSlideLicenseViewController.framework">

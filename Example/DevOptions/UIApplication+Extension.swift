@@ -12,14 +12,22 @@ import DevOptions
 extension UIApplication {
     class func serverBaseUrl() -> String {
         if DevOptions.isDevModeActivated() {
-            return "https://yourserver-dev.com"
+            if DevOptions.applicationType() == .development {
+                return "https://yourserver-dev.com"
+            } else if DevOptions.applicationType() == .production {
+                return "https://yourserver-prod.com"
+            }
         }
         return Bundle.main.object(forInfoDictionaryKey: "base_url_server") as! String
     }
     
     class func otherBaseUrl() -> String {
         if DevOptions.isDevModeActivated() {
-            return "https://anotherserver-dev.com"
+            if DevOptions.applicationType() == .development {
+                return "https://anotherserver-dev.com"
+            } else if DevOptions.applicationType() == .production {
+                return "https://anotherserver-prod.com"
+            }
         }
         return Bundle.main.object(forInfoDictionaryKey: "base_url_other") as! String
     }

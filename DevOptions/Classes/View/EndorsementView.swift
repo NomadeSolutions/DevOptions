@@ -146,33 +146,38 @@ import TRZSlideLicenseViewController
             self.licenceButtonLongPresseTime = NSNumber.init(value: CFAbsoluteTimeGetCurrent() * 1000)
         }
         
-        if (fabs(self.licenceButtonLongPresseTime.doubleValue - self.companyButtonLongPresseTime.doubleValue) < 100 && devModeAlertView == nil) {
-            devModeAlertView = UIAlertController(title: NSLocalizedString("DevOptions.endorsement.alert.dev_options_title", bundle: DevOptions.ResourcesBundle(), comment: ""),
+        if (fabs(self.licenceButtonLongPresseTime.doubleValue - self.companyButtonLongPresseTime.doubleValue) < 100 && devModeAlertView == nil && devOptionsVC == nil) {
+            
+            if DevOptions.isDevModeActivated() {
+                self.devOptionsVC = DevOptionsViewController()
+                openDevOptionsViewController()
+            
+            } else {
+                devModeAlertView = UIAlertController(title: NSLocalizedString("DevOptions.endorsement.alert.dev_options_title", bundle: DevOptions.ResourcesBundle(), comment: ""),
                                                      message: NSLocalizedString("DevOptions.endorsement.alert.dev_options_message", bundle: DevOptions.ResourcesBundle(), comment: ""),
                                                      preferredStyle: .alert)
-            
-            let okAction = UIAlertAction(title: NSLocalizedString("DevOptions.general.ok", bundle: DevOptions.ResourcesBundle(), comment: ""), style: .default, handler: { (action) in
-                let textfields = self.devModeAlertView!.textFields
-                let passwordField = textfields?[0]
                 
-                if passwordField?.text == DevOptions.configurations.password {
-                    self.devOptionsVC = DevOptionsViewController()
-                    let navigationController = DevOptionsNavigationController(rootViewController: self.devOptionsVC!)
-                    DevOptions.topViewController()?.present(navigationController, animated: true, completion: nil)
-                }
+                let okAction = UIAlertAction(title: NSLocalizedString("DevOptions.general.ok", bundle: DevOptions.ResourcesBundle(), comment: ""), style: .default, handler: { (action) in
+                    let textfields = self.devModeAlertView!.textFields
+                    let passwordField = textfields?[0]
+                    
+                    if passwordField?.text == DevOptions.configurations.password {
+                        self.devOptionsVC = DevOptionsViewController()
+                        self.openDevOptionsViewController()
+                    }
+                    
+                    self.devModeAlertView = nil
+                })
                 
-                self.devModeAlertView = nil
-            })
-            
-            self.devModeAlertView!.addAction(okAction)
-            self.devModeAlertView!.addTextField(configurationHandler: { (textField) in
-                textField.placeholder = NSLocalizedString("DevOptions.endorsement.alert.dev_options_password_placeholder", bundle: DevOptions.ResourcesBundle(), comment: "")
-                textField.isSecureTextEntry = true
-            })
-            
-            DevOptions.topViewController()?.present(self.devModeAlertView!, animated: true, completion: nil)
+                self.devModeAlertView!.addAction(okAction)
+                self.devModeAlertView!.addTextField(configurationHandler: { (textField) in
+                    textField.placeholder = NSLocalizedString("DevOptions.endorsement.alert.dev_options_password_placeholder", bundle: DevOptions.ResourcesBundle(), comment: "")
+                    textField.isSecureTextEntry = true
+                })
+                
+                DevOptions.topViewController()?.present(self.devModeAlertView!, animated: true, completion: nil)
+            }
         }
-        
     }
     
     @objc private func onClickCompanyButton(sender: UIButton) {
@@ -192,5 +197,15 @@ import TRZSlideLicenseViewController
         
         let licenceNC = DevOptionsNavigationController(rootViewController: self.licenceVC!)
         DevOptions.topViewController()?.present(licenceNC, animated:  true, completion: nil)
+    }
+    
+    // MARK: - Private funcs
+    
+    private func openDevOptionsViewController() {
+        if self.devOptionsVC == nil { self.devOptionsVC = DevOptionsViewController() }
+        let navigationController = DevOptionsNavigationController(rootViewController: self.devOptionsVC!)
+        DevOptions.topViewController()?.present(navigationController, animated: true, completion: {
+            self.devOptionsVC = nil
+        })
     }
 }
