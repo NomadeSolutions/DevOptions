@@ -18,7 +18,6 @@ import DevOptionsObjc
     @objc public var companyLogo: UIImage?
     @objc public var companyWebsite: String?
     @objc public var licensesFileName: String!
-    @objc public var assistiveTouchIcon: UIImage!
     @objc public var password: String!
     @objc public var darkTintColor: UIColor!
     @objc public var lightTintColor: UIColor!
@@ -32,7 +31,6 @@ import DevOptionsObjc
     public override init() {
         super.init()
         licensesFileName = "Pods-acknowledgements.plist"
-        assistiveTouchIcon = UIImage(named: "dev_icon_assistive_touch", in: DevOptions.ResourcesBundle(), compatibleWith: nil)!
         password = ""
         darkTintColor = UIColor(red: 134.0/255.0, green: 134.0/255.0, blue: 134.0/255.0, alpha: 1)
         lightTintColor = UIColor.white
@@ -79,7 +77,7 @@ import DevOptionsObjc
         if DevOptions.isDevModeActivated() {
             AssistiveTouchCenter.sharedInstance.showAssistiveTouch(true)
         } else {
-            setApplicationType(configurations.defaultApplicationType)
+            UserDefaults.standard.set(configurations.defaultApplicationType.rawValue, forKey: kApplicationType)
         }
     }
     
@@ -102,11 +100,21 @@ import DevOptionsObjc
         return ApplicationType(rawValue: UserDefaults.standard.integer(forKey: kApplicationType))!
     }
     
-    @objc class func setApplicationType(_ applicationType: ApplicationType) {
+    class func setApplicationType(_ applicationType: ApplicationType) {
         let currentApplicationType = DevOptions.applicationType()
         UserDefaults.standard.set(applicationType.rawValue, forKey: kApplicationType)
         if currentApplicationType != applicationType {
             onApplicationTypeChangeBlock?()
+            AssistiveTouchCenter.sharedInstance.setAssistiveTouchImage(AssistiveTouchCenter.sharedInstance.imageForAssistiveTouch())
+        }
+    }
+    
+    class func showDevOptionsViewController() {
+        if let topViewController = DevOptions.topViewController() {
+            if !topViewController.isKind(of: DevOptionsViewController.self) {
+                let navigationController = DevOptionsNavigationController(rootViewController: DevOptionsViewController())
+                topViewController.present(navigationController, animated: true, completion: nil)
+            }
         }
     }
     

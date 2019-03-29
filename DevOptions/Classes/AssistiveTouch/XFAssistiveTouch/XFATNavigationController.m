@@ -116,6 +116,10 @@
     _viewControllers = viewControllers;
 }
 
+- (void)setAssistiveTouchImage:(UIImage*)image {
+    [_contentItem setImage:image];
+}
+
 #pragma mark - Animition
 
 - (void)spread {

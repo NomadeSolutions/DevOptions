@@ -30,6 +30,10 @@ class AssistiveTouchCenter: NSObject, XFXFAssistiveTouchDelegate {
         }
     }
     
+    func setAssistiveTouchImage(_ image: UIImage) {
+        XFAssistiveTouch.sharedInstance().navigationController.setAssistiveTouch(image)
+    }
+    
     // MARK: - XFXFAssistiveTouchDelegate
     
     func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -37,11 +41,15 @@ class AssistiveTouchCenter: NSObject, XFXFAssistiveTouchDelegate {
     }
     
     func imageForAssistiveTouch() -> UIImage {
-        return DevOptions.configurations.assistiveTouchIcon
+        var image = UIImage(named: "icon_assistive_touch_dev", in: DevOptions.ResourcesBundle(), compatibleWith: nil)!
+        if DevOptions.applicationType() == .production {
+            image = UIImage(named: "icon_assistive_touch_prod", in: DevOptions.ResourcesBundle(), compatibleWith: nil)!
+        }
+        return image
     }
     
     func numberOfItems(in viewController: XFATViewController) -> Int {
-        return 3
+        return 4
     }
     
     func viewController(_ viewController: XFATViewController, itemViewAtPosition position: XFATPosition) -> XFATItemView {
@@ -54,8 +62,12 @@ class AssistiveTouchCenter: NSObject, XFXFAssistiveTouchDelegate {
         case 1:
             let item =  XFATItemView.innerItem(with: UIImage(named: "dev_icon_tag", in: DevOptions.ResourcesBundle(), compatibleWith: nil)!, title: "Page tag")
             return item
-            
+          
         case 2:
+            let item =  XFATItemView.innerItem(with: UIImage(named: "dev_icon_info", in: DevOptions.ResourcesBundle(), compatibleWith: nil)!, title: "Show Developer Options Page")
+            return item
+            
+        case 3:
             let item =  XFATItemView.innerItem(with: UIImage(named: "dev_icon_exit", in: DevOptions.ResourcesBundle(), compatibleWith: nil)!, title: "Exit developer mode")
             return item
             
@@ -78,6 +90,9 @@ class AssistiveTouchCenter: NSObject, XFXFAssistiveTouchDelegate {
             break
             
         case 2:
+            DevOptions.showDevOptionsViewController()
+            
+        case 3:
             DevOptions.setDevModeActivated(false)
             break
             
@@ -101,10 +116,15 @@ class AssistiveTouchCenter: NSObject, XFXFAssistiveTouchDelegate {
                 actionSheet.addAction(action)
             }
             
-            let keyAction = UIAlertAction(title: "localized key", style: .default, handler: { (action) in
+            let keyAction = UIAlertAction(title: "Localized key", style: .default, handler: { (action) in
                 Bundle.setLanguage(nil)
             })
             actionSheet.addAction(keyAction)
+            
+            /*let deviceLanguageAction = UIAlertAction(title: "Device language", style: .default, handler: { (action) in
+                Bundle.setLanguage(Locale.preferredLanguages.first)
+            })
+            actionSheet.addAction(deviceLanguageAction)*/
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:nil)
             actionSheet.addAction(cancelAction)

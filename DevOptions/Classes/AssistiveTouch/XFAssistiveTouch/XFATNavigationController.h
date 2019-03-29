@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 //- (void)popViewController;
 
 - (void)moveContentViewToPoint:(CGPoint)point;
+- (void)setAssistiveTouchImage:(UIImage*)image;
 
 @property (nonatomic, strong) NSMutableArray<XFATViewController *> *viewControllers;
 @property (nonatomic, assign, readonly, getter=isShow) BOOL show;

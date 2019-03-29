@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)innerItemWithImage:(UIImage * _Nullable)image title:(NSString* _Nullable)title;
 + (instancetype)assistiveItemWithImage:(UIImage * _Nullable)image;
 
+-(void)setImage:(UIImage*)image;
+
 @property (nonatomic, strong) XFATPosition *position;
 
 @end

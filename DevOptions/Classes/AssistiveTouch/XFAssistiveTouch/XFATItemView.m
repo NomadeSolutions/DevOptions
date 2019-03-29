@@ -8,6 +8,10 @@
 
 #import "XFATItemView.h"
 
+@interface XFATItemView()
+@property (nonatomic, strong) UIImageView *imageView;
+@end
+
 @implementation XFATItemView
 
 + (instancetype)innerItemWithImage:(UIImage * _Nullable)image title:(NSString* _Nullable)title {
@@ -19,7 +23,7 @@
 }
 
 - (instancetype)initWithImage:(UIImage * _Nullable)image title:(NSString* _Nullable)title isInnerItem:(BOOL)isInnerItem  {
-    UIImageView *imageView = [[UIImageView alloc] init];
+    self.imageView = [[UIImageView alloc] init];
     CGRect itemFrame;
     CGFloat imageOffset = 0;
     CGFloat imageSize = 0;
@@ -28,28 +32,28 @@
         itemFrame = CGRectMake(0, 0, [XFATLayoutAttributes itemWidth], [XFATLayoutAttributes itemHeight]);
         
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        imageView.tintColor = [UIColor whiteColor];
+        _imageView.tintColor = [UIColor whiteColor];
         imageOffset = 5;
         imageSize = [XFATLayoutAttributes itemHeight] - 2 * imageOffset;
-        [imageView setFrame:CGRectMake(imageOffset, imageOffset, imageSize, imageSize)];
+        [_imageView setFrame:CGRectMake(imageOffset, imageOffset, imageSize, imageSize)];
     } else {
         itemFrame = CGRectMake(0, 0, [XFATLayoutAttributes itemImageWidth], [XFATLayoutAttributes itemImageWidth]);
         
         imageOffset = 5;
         imageSize = [XFATLayoutAttributes itemImageWidth] - 2 * imageOffset;
-        [imageView setFrame:CGRectMake(imageOffset, imageOffset, imageSize, imageSize)];
+        [_imageView setFrame:CGRectMake(imageOffset, imageOffset, imageSize, imageSize)];
     }
     
     self = [super initWithFrame:itemFrame];
     if (self) {
-        if (image) [imageView setImage:image];
-        [imageView setContentMode:UIViewContentModeScaleAspectFit];
-        [imageView setClipsToBounds:YES];
-        [self addSubview:imageView];
+        if (image) [_imageView setImage:image];
+        [_imageView setContentMode:UIViewContentModeScaleAspectFit];
+        [_imageView setClipsToBounds:YES];
+        [self addSubview:self.imageView];
         
         if (title) {
             UILabel *label = [[UILabel alloc]
-                              initWithFrame:CGRectMake(imageView.frame.size.width + 2*imageOffset,
+                              initWithFrame:CGRectMake(self.imageView.frame.size.width + 2*imageOffset,
                                                        0,
                                                        [XFATLayoutAttributes itemWidth] - imageOffset * 2 - imageSize - [XFATLayoutAttributes itemMargin],
                                                        [XFATLayoutAttributes itemHeight])];
@@ -62,6 +66,10 @@
     }
     
     return self;
+}
+
+-(void)setImage:(UIImage*)image {
+    [_imageView setImage:image];
 }
 
 @end
