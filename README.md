@@ -8,9 +8,9 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-![alt text](https://github.com/NomadeSolutions/DevOptions/ScreenShots/Simulator_DevOptionsViewController.png)
-![alt text](https://github.com/NomadeSolutions/DevOptions/ScreenShots/Simulator_DevOptionsActions.png)
-![alt text](https://github.com/NomadeSolutions/DevOptions/ScreenShots/Simulator_DevOptionsLaguages.png)
+![alt text](https://github.com/NomadeSolutions/DevOptions/blob/master/ScreenShots/Simulator_DevOptionsViewController.png)
+![alt text](https://github.com/NomadeSolutions/DevOptions/blob/master/ScreenShots/Simulator_DevOptionsActions.png)
+![alt text](https://github.com/NomadeSolutions/DevOptions/blob/master/ScreenShots/Simulator_DevOptionsLaguages.png)
 
 ## Requirements
 
