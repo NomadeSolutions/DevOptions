@@ -8,6 +8,10 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+![alt text](https://github.com/NomadeSolutions/DevOptions/ScreenShots/Simulator_DevOptionsViewController.png)
+![alt text](https://github.com/NomadeSolutions/DevOptions/ScreenShots/Simulator_DevOptionsActions.png)
+![alt text](https://github.com/NomadeSolutions/DevOptions/ScreenShots/Simulator_DevOptionsLaguages.png)
+
 ## Requirements
 
 - iOS 9.0+
@@ -76,7 +80,27 @@ view.addSubview(endorsementView)
 From Storyboard:
 Set a custom class for your view (Class: EndorsementView, Module: DevOptions). XCode should select the module automatically.
 
-4. Access the DevOptions by long pressing both company  and licenses logos.
+4. Ensure to set your localized texts  in ViewDidLoad, and optionally page tags.
+
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+
+    title = NSLocalizedString("welcome.navigation_bar.title", comment: "")
+    pageTag = "welcome"
+
+    let informationLabel = UILabel()
+    informationLabel.text = NSLocalizedString("welcome.label.information", comment: "")
+    //...
+
+
+    settingsButton = UIButton(type: .system)
+    settingsButton.setTitle(NSLocalizedString("welcome.button.settings", comment: ""), for: .normal)
+    //...
+}
+```
+
+5. Access the DevOptions by long pressing both company  and licenses logos.
 
 ## Author
 

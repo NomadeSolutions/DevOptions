@@ -29,7 +29,6 @@ class ItemView: UIView {
         label.snp.makeConstraints { (make) in
             make.top.equalTo(snp.top).offset(20)
             make.left.equalTo(snp.left)
-            make.right.equalTo(view.snp.left)
             make.bottom.equalTo(snp.bottom).offset(-20)
         }
         
@@ -107,7 +106,11 @@ class SettingsViewController: UIViewController {
         endorsementView.snp.makeConstraints { (make) in
             make.left.equalTo(view.snp.left)
             make.right.equalTo(view.snp.right)
-            make.bottom.equalTo(view.snp.bottom)
+            if #available(iOS 11.0, *) {
+                make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            } else {
+                make.bottom.equalTo(view.snp.bottom)
+            }
         }
     }
     
