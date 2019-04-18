@@ -106,20 +106,26 @@ class AssistiveTouchCenter: NSObject, XFXFAssistiveTouchDelegate {
     
     fileprivate func showLanguageSelector() {
         if let visibleViewController = DevOptions.topViewController() {
-            let actionSheet = UIAlertController(title: "Choose language", message: nil, preferredStyle: .actionSheet)
+            
+            var style = UIAlertController.Style.actionSheet
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                style = .alert
+            }
+            
+            let alertController = UIAlertController(title: "Choose language", message: nil, preferredStyle: style)
             
             for language in DevOptions.configurations.supportedLanguages! {
                 let language = language.lowercased()
                 let action = UIAlertAction(title: language, style: .default, handler: { (action) in
                     Bundle.setLanguage(language)
                 })
-                actionSheet.addAction(action)
+                alertController.addAction(action)
             }
             
             let keyAction = UIAlertAction(title: "Localized key", style: .default, handler: { (action) in
                 Bundle.setLanguage(nil)
             })
-            actionSheet.addAction(keyAction)
+            alertController.addAction(keyAction)
             
             /*let deviceLanguageAction = UIAlertAction(title: "Device language", style: .default, handler: { (action) in
                 Bundle.setLanguage(Locale.preferredLanguages.first)
@@ -127,9 +133,9 @@ class AssistiveTouchCenter: NSObject, XFXFAssistiveTouchDelegate {
             actionSheet.addAction(deviceLanguageAction)*/
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:nil)
-            actionSheet.addAction(cancelAction)
+            alertController.addAction(cancelAction)
             
-            visibleViewController.present(actionSheet, animated: true, completion: nil)
+            visibleViewController.present(alertController, animated: true, completion: nil)
         }
     }
     

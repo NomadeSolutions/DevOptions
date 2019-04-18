@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "dev_icon_assistive_touch.png",
+      "filename" : "icon_assistive_touch_dev.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "dev_icon_assistive_touch@2x.png",
+      "filename" : "icon_assistive_touch_dev@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "dev_icon_assistive_touch@3x.png",
+      "filename" : "icon_assistive_touch_dev@3x.png",
       "scale" : "3x"
     }
   ],

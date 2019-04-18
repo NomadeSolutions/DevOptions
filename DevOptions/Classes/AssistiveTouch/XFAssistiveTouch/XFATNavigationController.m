@@ -356,7 +356,7 @@
 }
 
 -(UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskPortrait;
+    return UIInterfaceOrientationMaskAll;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
