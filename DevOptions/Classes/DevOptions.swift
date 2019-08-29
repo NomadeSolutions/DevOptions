@@ -16,11 +16,14 @@ import DevOptionsObjc
 @objc public class DevOptionsConfigurations: NSObject {
     @objc public var defaultApplicationType: ApplicationType = .development
     @objc public var companyLogo: UIImage?
+    @objc public var licencesLogo: UIImage?
     @objc public var companyWebsite: String?
     @objc public var licensesFileName: String!
     @objc public var password: String!
     @objc public var darkTintColor: UIColor!
     @objc public var lightTintColor: UIColor!
+    @objc public var buildTextColor: UIColor!
+    @objc public var buildBackgroundColor: UIColor!
     @objc public var supportedLanguages: [String]!
     @objc public var mainStoryboardName: String? = nil {
         didSet{
@@ -34,6 +37,8 @@ import DevOptionsObjc
         password = ""
         darkTintColor = UIColor(red: 134.0/255.0, green: 134.0/255.0, blue: 134.0/255.0, alpha: 1)
         lightTintColor = UIColor.white
+        buildTextColor = UIColor.gray
+        buildBackgroundColor = UIColor.clear
         supportedLanguages = ["fr", "en"]
     }
 }

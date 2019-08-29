@@ -11,29 +11,12 @@ import SafariServices
 import SnapKit
 import TRZSlideLicenseViewController
 
-@objc public enum EndorsementTheme: NSInteger {
-    case light = 0, dark
-}
 
 @objc public class EndorsementView : UIView {
     
     // MARK: - Static var
     
     @objc public static let height: CGFloat = 110
-    
-    // MARK: - Public vars
-    
-    public var theme: EndorsementTheme = .dark {
-        didSet{
-            if theme == .dark {
-                self.companyButton.tintColor = DevOptions.configurations.darkTintColor
-                self.licenceButton.tintColor = DevOptions.configurations.darkTintColor
-            } else {
-                self.companyButton.tintColor = DevOptions.configurations.lightTintColor
-                self.licenceButton.tintColor = DevOptions.configurations.lightTintColor
-            }
-        }
-    }
     
     // MARK: - Views
     
@@ -67,26 +50,23 @@ import TRZSlideLicenseViewController
         let contentView = UIView()
         addSubview(contentView)
         
-        let companyImage = DevOptions.configurations.companyLogo?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        let companyImage = DevOptions.configurations.companyLogo
         self.companyButton.addTarget(self, action: #selector(onClickCompanyButton(sender:)), for: .touchUpInside)
         self.companyButton.setImage(companyImage, for: .normal)
         contentView.addSubview(self.companyButton)
         
-        let licenceButtonImage = UIImage(named: NSLocalizedString("DevOptions.image.software_licenses", bundle: DevOptions.ResourcesBundle(), comment: ""), in: DevOptions.ResourcesBundle(), compatibleWith: nil)?
-            .withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        var licenceButtonImage = UIImage(named: NSLocalizedString("DevOptions.image.software_licenses", bundle: DevOptions.ResourcesBundle(), comment: ""), in: DevOptions.ResourcesBundle(), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+        if let image = DevOptions.configurations.licencesLogo {
+            licenceButtonImage = image
+        } else {
+             self.licenceButton.tintColor = DevOptions.configurations.darkTintColor
+        }
+        
         self.licenceButton.addTarget(self, action: #selector(onClickLicenseButton(sender:)), for: .touchUpInside)
         self.licenceButton.setImage(licenceButtonImage, for: .normal)
         self.licenceButton.contentMode = .center
         self.licenceButton.imageView?.contentMode = .center
         contentView.addSubview(self.licenceButton)
-        
-        if theme == .dark {
-            self.companyButton.tintColor = DevOptions.configurations.darkTintColor
-            self.licenceButton.tintColor = DevOptions.configurations.darkTintColor
-        } else {
-            self.companyButton.tintColor = DevOptions.configurations.lightTintColor
-            self.licenceButton.tintColor = DevOptions.configurations.lightTintColor
-        }
         
         self.companyButtonLongPressedGesture = UILongPressGestureRecognizer(target: self, action: #selector(onLongPresse(sender:)))
         self.companyButton.addGestureRecognizer(self.companyButtonLongPressedGesture)
@@ -97,15 +77,17 @@ import TRZSlideLicenseViewController
         self.buildLabel.text = DevOptions.formattedVersionBuild()
         self.buildLabel.font = UIFont(name: self.buildLabel.font.fontName, size: 10)
         self.buildLabel.textAlignment = NSTextAlignment.center
-        self.buildLabel.textColor = UIColor.gray
+        self.buildLabel.baselineAdjustment = .alignCenters
+        self.buildLabel.textColor = DevOptions.configurations.buildTextColor
+        self.buildLabel.backgroundColor = DevOptions.configurations.buildBackgroundColor
         contentView.addSubview(self.buildLabel)
         
         
         contentView.snp.makeConstraints { (make) in
-            make.top.greaterThanOrEqualTo(self.snp.top)
+            make.top.equalTo(self.snp.top)
             make.left.equalTo(self.snp.left).offset(10)
             make.right.equalTo(self.snp.right).offset(-10)
-            make.bottom.lessThanOrEqualTo(self.snp.bottom).offset(-10)
+            make.bottom.equalTo(self.snp.bottom)
             make.centerY.equalTo(self.snp.centerY)
         }
         
@@ -126,9 +108,12 @@ import TRZSlideLicenseViewController
         self.buildLabel.snp.makeConstraints {(make) in
             make.top.equalTo(self.companyButton.snp.bottom)
             make.centerX.equalTo(contentView.snp.centerX)
-            make.left.equalTo(contentView.snp.left)
-            make.right.equalTo(contentView.snp.right)
+            make.left.equalTo(self.snp.left)
+            make.right.equalTo(self.snp.right)
             make.bottom.equalTo(contentView.snp.bottom)
+            if DevOptions.configurations.buildBackgroundColor != .clear {
+               make.height.equalTo(44)
+            }
         }
     }
     
