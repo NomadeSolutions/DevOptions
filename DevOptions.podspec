@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'DevOptions'
-  s.version          = '0.3.1'
+  s.version          = '0.3.2'
   s.summary          = 'Allows you to activate developper options.'
   s.swift_version    = '4.2'
 
