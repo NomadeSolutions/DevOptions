@@ -9,6 +9,7 @@
 #import "UIViewController+LocalizedAtRunTimeViewController.h"
 #import "NSBundle+Language.h"
 #import <objc/runtime.h>
+#import <WebKit/WebKit.h>
 
 @implementation UIViewController (LocalizedAtRunTimeViewController)
 
@@ -63,7 +64,7 @@
     if ([self isKindOfClass:[UIAlertController class]]) {
         [self dismissViewControllerAnimated:YES completion:nil];
         return;
-    } else if ([self.view isKindOfClass:[UIWebView class]]) {
+    } else if ([self.view isKindOfClass:[WKWebView class]]) {
         return;
     } else if([self.description containsString:@"PKRevealController"]) {
         return;
