@@ -5,10 +5,11 @@ target 'DevOptions_Example' do
   pod 'Toast-Swift'
   pod 'SnapKit'
   pod 'DevOptions', :path => '../'
-
+  platform :ios, '12.0'
+  
   target 'DevOptions_Tests' do
     inherit! :search_paths
-
+	
     
   end
 end

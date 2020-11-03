@@ -1,8 +1,8 @@
 {
   "name": "DevOptions",
-  "version": "0.3.0",
+  "version": "0.3.4",
   "summary": "Allows you to activate developper options.",
-  "swift_version": "4.2",
+  "swift_versions": "4.2",
   "description": "Allows you to activate developper options such as: Changing the application language at runtime or letting you see your non localized key; Changing the server base url, allowing you to switch from the development environment to the production environment in a simple click; Showing a tag for the UIViewController you are currently looking at.",
   "homepage": "https://github.com/NomadeSolutions/DevOptions",
   "license": {
@@ -14,10 +14,10 @@
   },
   "source": {
     "git": "https://github.com/NomadeSolutions/DevOptions.git",
-    "tag": "0.3.0"
+    "tag": "0.3.4"
   },
   "platforms": {
-    "ios": "9.0"
+    "ios": "12.0"
   },
   "source_files": "DevOptions/Classes/**/*.{h,m,swift,modulemap}",
   "pod_target_xcconfig": {
@@ -42,5 +42,6 @@
     "SnapKit": [
 
     ]
-  }
+  },
+  "swift_version": "4.2"
 }
