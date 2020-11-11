@@ -34,6 +34,7 @@
 "DevOptions.view_controller.navigation_bar.title" = "Options développeur";
 "DevOptions.view_controller.toggle.dev_mode" = "Activer le Mode Développeur";
 "DevOptions.view_controller.segmented_control.dev" = "Development";
+"DevOptions.view_controller.segmented_control.staging" = "Staging";
 "DevOptions.view_controller.segmented_control.prod" = "Production";
 "DevOptions.view_controller.item.userId_title" = "ID de l'utilisateur";
 "DevOptions.view_controller.item.device_title" = "Appareil";

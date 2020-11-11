@@ -78,6 +78,8 @@ class DevOptionsViewController: UIViewController, DevOptionsToggleViewDelegate {
         applicationTypeSegmentedControl = UISegmentedControl(items:
             [NSLocalizedString("DevOptions.view_controller.segmented_control.dev",
                                bundle: DevOptions.ResourcesBundle(), comment: ""),
+             NSLocalizedString("DevOptions.view_controller.segmented_control.staging",
+                               bundle: DevOptions.ResourcesBundle(), comment: ""),
              NSLocalizedString("DevOptions.view_controller.segmented_control.prod",
                                bundle: DevOptions.ResourcesBundle(), comment: "")])
         applicationTypeSegmentedControl.isEnabled = DevOptions.isDevModeActivated()
@@ -171,7 +173,9 @@ class DevOptionsViewController: UIViewController, DevOptionsToggleViewDelegate {
     @objc func onChangeApplicationType() {
         if applicationTypeSegmentedControl.selectedSegmentIndex == 0 {
             DevOptions.setApplicationType(.development)
-        } else {
+        } else if applicationTypeSegmentedControl.selectedSegmentIndex == 1{
+            DevOptions.setApplicationType(.staging)
+        }else {
             DevOptions.setApplicationType(.production)
         }
     }

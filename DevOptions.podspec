@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'DevOptions'
-  s.version          = '0.3.4'
+  s.version          = '0.4.0'
   s.summary          = 'Allows you to activate developper options.'
   s.swift_version    = '4.2'
 
@@ -13,7 +13,7 @@ Allows you to activate developper options such as: Changing the application lang
   s.author           = { 'Nomade Solutions Mobiles' => 'info@nomadesolutions.com' }
   s.source           = { :git => 'https://github.com/NomadeSolutions/DevOptions.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '12.0'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'DevOptions/Classes/**/*.{h,m,swift,modulemap}'
   s.pod_target_xcconfig = {'SWIFT_INCLUDE_PATHS' => '$(PODS_TARGET_SRCROOT)/DevOptions/Classes/Module'}

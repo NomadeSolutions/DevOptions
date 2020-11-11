@@ -42,7 +42,9 @@ class AssistiveTouchCenter: NSObject, XFXFAssistiveTouchDelegate {
     
     func imageForAssistiveTouch() -> UIImage {
         var image = UIImage(named: "icon_assistive_touch_dev", in: DevOptions.ResourcesBundle(), compatibleWith: nil)!
-        if DevOptions.applicationType() == .production {
+        if DevOptions.applicationType() == .staging {
+            image = UIImage(named: "icon_assistive_touch_staging", in: DevOptions.ResourcesBundle(), compatibleWith: nil)!
+        }else if DevOptions.applicationType() == .production {
             image = UIImage(named: "icon_assistive_touch_prod", in: DevOptions.ResourcesBundle(), compatibleWith: nil)!
         }
         return image

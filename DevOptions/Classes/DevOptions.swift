@@ -10,7 +10,7 @@ import UIKit
 import DevOptionsObjc
 
 @objc public enum ApplicationType: Int {
-    case development, production
+    case development, staging, production
 }
 
 @objc public class DevOptionsConfigurations: NSObject {
