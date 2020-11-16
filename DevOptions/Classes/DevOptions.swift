@@ -128,7 +128,7 @@ import DevOptionsObjc
      - parameter from: The controller from where search begins (optional)
      - returns: The top controller that user sees
      */
-    @objc public class func topViewController(from: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+    @objc public class func topViewController(from: UIViewController? = UIApplication.shared.windows[0].rootViewController) -> UIViewController? {
         if let nav = from as? UINavigationController {
             return topViewController(from: nav.visibleViewController)
         }
