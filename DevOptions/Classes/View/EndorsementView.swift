@@ -75,7 +75,7 @@ import TRZSlideLicenseViewController
         self.licenceButton.addGestureRecognizer(self.licenceButtonLongPressdGesture)
 
         self.buildLabel.text = DevOptions.formattedVersionBuild()
-        self.buildLabel.font = UIFont(name: self.buildLabel.font.fontName, size: 10)
+        self.buildLabel.font = UIFont.systemFont(ofSize: 10)
         self.buildLabel.textAlignment = NSTextAlignment.center
         self.buildLabel.baselineAdjustment = .alignCenters
         self.buildLabel.textColor = DevOptions.configurations.buildTextColor

@@ -17,6 +17,7 @@ Allows you to activate developper options such as: Changing the application lang
 
   s.source_files = 'DevOptions/Classes/**/**/*.{h,m,swift}'
   s.project_header_files = 'DevOptions/Classes/**/*.h'
+  s.preserve_paths = 'DevOptions/Classes/Module/*.modulemap'
   s.pod_target_xcconfig = {'SWIFT_INCLUDE_PATHS' => '$(PODS_TARGET_SRCROOT)/DevOptions/Classes/Module'}
   s.resource_bundles = {
       'DevOptions' => ['DevOptions/Assets/**/*.{xcassets,strings}']
