@@ -1,9 +1,9 @@
 PODS:
-  - DevOptions (0.4.0):
+  - DevOptions (0.4.1):
     - SnapKit
     - Toast-Swift
     - TRZSlideLicenseViewController
-  - SnapKit (5.0.1)
+  - SnapKit (5.6.0)
   - Toast-Swift (5.0.1)
   - TRZSlideLicenseViewController (0.9.6)
 
@@ -24,11 +24,11 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  DevOptions: b7c396a2836dc74db31c6c2a3574486f95ce480d
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  DevOptions: a17e3f8b553b4481bda79b17faa4137a6b46db2c
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
   TRZSlideLicenseViewController: f43346cc0ba579674549d5194c913c7001a24f1b
 
 PODFILE CHECKSUM: 70d009d4a5c63aac1d9d3a74cfabe899b65f5945
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.11.3

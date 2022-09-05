@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name             = 'DevOptions'
-  s.version          = '0.4.1'
+  s.version          = '0.4.2'
   s.summary          = 'Allows you to activate developper options.'
-  s.swift_version    = '4.2'
+  s.swift_version    = '5.0'
 
   s.description      = <<-DESC
 Allows you to activate developper options such as: Changing the application language at runtime or letting you see your non localized key; Changing the server base url, allowing you to switch from the development environment to the production environment in a simple click; Showing a tag for the UIViewController you are currently looking at.
@@ -15,9 +15,9 @@ Allows you to activate developper options such as: Changing the application lang
 
   s.ios.deployment_target = '10.0'
 
-  s.source_files = 'DevOptions/Classes/**/*.{h,m,swift,modulemap}'
+  s.source_files = 'DevOptions/Classes/**/**/*.{h,m,swift}'
+  s.project_header_files = 'DevOptions/Classes/**/*.h'
   s.pod_target_xcconfig = {'SWIFT_INCLUDE_PATHS' => '$(PODS_TARGET_SRCROOT)/DevOptions/Classes/Module'}
-  
   s.resource_bundles = {
       'DevOptions' => ['DevOptions/Assets/**/*.{xcassets,strings}']
   }
